@@ -1,0 +1,32 @@
+version: '3'
+services:
+  web:
+    build:
+        context: ./web
+    ports:
+        - 3000:3000
+    environment:
+        PORT: 3000 
+        API_HOST: http://api:3001 
+    depends_on: 
+        - api
+  api:
+    build:
+        context: ./api
+    ports:
+        - 3001:3001
+    environment:
+        DBHOST: postgres 
+        DBPORT: 5432
+        DB: api
+        DBUSER: api
+        DBPASS: example
+        PORT: 3001
+    depends_on:
+        - postgres    
+  postgres:
+    image: postgres:11.4
+    environment:
+        POSTGRES_DB: api
+        POSTGRES_USER: api
+        POSTGRES_PASSWORD: example

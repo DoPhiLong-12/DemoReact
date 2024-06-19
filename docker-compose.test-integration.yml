@@ -1,0 +1,9 @@
+version: '3'
+services:
+  curl:  
+    image: curlimages/curl:7.77.0
+    command: >
+        sh -c "
+        curl -s --fail --show-error --retry 3 --connect-timeout 10 http://api:3001/api/status > /dev/null &&  
+        curl -s --fail --show-error --retry 3 --connect-timeout 10 http://web:3000/ > /dev/null
+        "

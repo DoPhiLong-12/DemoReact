@@ -18,9 +18,9 @@ class App extends Component {
 
   }
   getResumeData() {
-    console.log('test1')
+    const api_url = process.env.REACT_APP_HOST_IP_ADDRESS + '/test';
     $.ajax({
-      url: "./resumeData.json",
+      url: api_url,
       dataType: "json",
       cache: false,
       success: function(data) {
@@ -32,22 +32,8 @@ class App extends Component {
       }
     });
   }
-  // useEffect(()=>{
-  //   this.getResumeData();
-  // },[])
-//   useEffect(() => {
-//     let isFetching = true;
-
-//     apiPosts.list().then((res) => {
-//         if (isFetching) {
-//             setListData(res.data);
-//         }
-//     });
-
-//     return () => (isFetching = false);
-// }, []);
+  
   componentDidMount() {
-    console.log('test')
     this.getResumeData();
   }
 

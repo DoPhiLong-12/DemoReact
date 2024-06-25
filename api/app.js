@@ -29,9 +29,10 @@ app.get('/metrics', async (_req, res) => {
 app.get('/test', async (_req, res)=>{
   const data = fs.readFileSync('resumeData.json', 'utf8');
   const databases = JSON.parse(data);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Content-Type', 'application/json');
-  console.log('data',databases)
-  res.statuss(200).send(databases)
+  res.status(200).send(databases)
 })
 // Routes
 app.get('/api/status', function(req, res) {

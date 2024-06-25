@@ -5,6 +5,7 @@ collectDefaultMetrics();
 var express = require('express');
 var app = express();
 var uuid = require('node-uuid');
+const fs = require('fs');
 
 var pg = require('pg');
 const conString = {
@@ -24,6 +25,14 @@ app.get('/metrics', async (_req, res) => {
     res.status(500).end(err);
   }
 });
+// test 
+app.get('/test', async (_req, res)=>{
+  const data = fs.readFileSync('resumeData.json', 'utf8');
+  const databases = JSON.parse(data);
+  res.setHeader('Content-Type', 'application/json');
+  console.log('data',databases)
+  res.statuss(200).send(databases)
+})
 // Routes
 app.get('/api/status', function(req, res) {
 //'SELECT now() as time', [], function(err, result
